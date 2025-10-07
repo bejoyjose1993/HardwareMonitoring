@@ -1,0 +1,23 @@
+import psutil
+try:
+    from nvidia_smi import nvidia_smi
+    nvsmi = nvidia_smi.getInstance()
+except ImportError:
+    nvsmi = None
+
+def get_cpu_usage():
+    return psutil.cpu_percent(interval=1)
+
+def get_ram_usage():
+    mem = psutil.virtual_memory()
+    return {"total": mem.total, "used": mem.used, "percent": mem.percent}
+
+def get_disk_usage():
+    disk = psutil.disk_usage("/")
+    return {"total": disk.total, "used": disk.used, "percent": disk.percent}
+
+def get_gpu_usage():
+    if not nvsmi:
+        return None
+    gpu_info = nvsmi.DeviceQuery("memory.used, utilization.gpu")
+    return gpu_info
