@@ -3,15 +3,28 @@ import sys
 import time
 import json
 from pathlib import Path 
+import threading
 
-def handle_exit(sig, frame):
-    print("Exiting...")
-    sys.exit(0)
+# Shutdown flag
+shutdown_event = threading.Event()
+
+# Handler for Ctrl+C / Termination
+def handle_exit(sig=None, frame=None):
+    if not shutdown_event.is_set():
+        print("Exiting...")
+        shutdown_event.set() 
+
 
 def register_signal_handlers():
-    signal.signal(signal.SIGINT, handle_exit)   # For Ctrl+C
-    signal.signal(signal.SIGTERM, handle_exit)  # For Termination signal
-
+    try:
+        # Register signals normally (Unix)
+        signal.signal(signal.SIGINT, handle_exit)   # For Ctrl+C
+        signal.signal(signal.SIGTERM, handle_exit)  # For Termination signal
+    except ValueError:
+            # Windows may raise ValueError for signals in threads
+            print("[WARN] Signals not fully supported, relying on shutdown_event and KeyboardInterrupt")
+            pass
+    
 # For Time formatting 
 def current_timestamp():
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

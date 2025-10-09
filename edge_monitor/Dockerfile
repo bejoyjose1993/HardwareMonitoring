@@ -1,7 +1,7 @@
-# Use official Python image
+# Use official Python slim image
 FROM python:3.11-slim
 
-# Set workdir inside container
+# Set working directory
 WORKDIR /app
 
 # Install system dependencies
@@ -14,18 +14,28 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH="/root/.local/bin:$PATH"
 
-# Copy only dependency files first (for caching)
+# Copy dependency files
 COPY pyproject.toml poetry.lock* ./
 
-# Install dependencies
+# Install dependencies (disable virtualenv for simplicity)
 RUN poetry config virtualenvs.create false \
     && poetry install --no-root --no-interaction --no-ansi
 
 # Copy source code
 COPY src/ ./src/
 
-# Set PYTHONPATH so that Python finds the package
+# Set PYTHONPATH
 ENV PYTHONPATH=/app/src
 
-# Run as CLI
-ENTRYPOINT ["python", "-m", "edge_monitor"]
+# Default environment variables
+ENV TRANSPORT=http
+ENV ENDPOINT=http://0.0.0.0:8000/ingest
+ENV BROKER=mosquitto
+ENV PORT=1883
+ENV INTERVAL=5
+
+# Expose FastAPI port
+EXPOSE 8000
+
+# Run the unified EdgeMonitor + API server
+CMD ["poetry", "run", "python", "src/run_all.py"]

@@ -1,7 +1,4 @@
 import aiohttp
-import asyncio
-
-
 
 async def send(endpoint: str, data: dict):
     """

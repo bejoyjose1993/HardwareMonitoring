@@ -18,7 +18,9 @@ dependencies = [
   "psutil (>=5.8.0,<6.0.0)",
   "aiohttp (>=3.8.0,<4.0.0)",
   "paho-mqtt (>=1.6.0,<2.0.0)",
-  "nvidia-ml-py3 (>=7.352.0,<8.0.0)"
+  "nvidia-ml-py3 (>=7.352.0,<8.0.0)",
+  "fastapi (>=0.118.2,<0.119.0)",
+  "uvicorn (>=0.37.0,<0.38.0)"
 ]
 requires-python = ">= 3.9"
 
@@ -37,7 +39,8 @@ changelog = "https://github.com/bejoyjose1993/edge_monitor/blob/master/changelog
 homepage = "https://github.com/bejoyjose1993/edge_monitor"
 
 [project.scripts]
-edge_monitor = "edge_monitor.cli:app"
+run-all = "run_all:main"
+
 
 [tool.ty]
 # All rules are enabled as "error" by default; no need to specify unless overriding.
