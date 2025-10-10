@@ -48,7 +48,7 @@ Each component is containerized using Docker and orchestrated via Docker Compose
 ---
 
 
-## 🚀 Getting Started
+## 🚀 Getting Started (Installation and run instructions)
 ### 1. Clone the Repository
 
 ```bash
