@@ -108,3 +108,15 @@ EDGE_MONITOR_TRANSPORT=http
 EDGE_MONITOR_ENDPOINT=http://edge_monitor:8000/ingest
 EDGE_MONITOR_INTERVAL=5
 ```
+
+### 3. Build and Run with Docker Compose
+```bash
+docker-compose --env-file .env.local up --build
+```
+
+### 3. Access the Application
+
+Frontend (Angular): http://localhost:4200
+API Gateway: http://localhost:8082
+MySQL: port 3306
+Redis: port 6379
