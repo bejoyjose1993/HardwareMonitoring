@@ -115,7 +115,7 @@ EDGE_MONITOR_INTERVAL=5
 docker-compose --env-file .env.local up --build
 ```
 
-### 3. Access the Application
+### 4. Access the Application
 
 Frontend (Angular): http://localhost:4200
 
@@ -124,3 +124,11 @@ API Gateway: http://localhost:8082
 MySQL: port 3306
 
 Redis: port 6379
+
+## 🚀 User Interface
+
+### 1. Login Page
+
+### 2. SignIn Page
+
+### 3. Dashboard Page
