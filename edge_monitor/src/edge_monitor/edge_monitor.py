@@ -1,5 +1,5 @@
 import asyncio
-from .metrics import get_cpu_usage, get_ram_usage, get_disk_usage, get_gpu_usage
+from .metrics import get_cpu_usage, get_ram_usage, get_disk_usage, get_gpu_usage, get_temperature
 from .transport import file_transfer, http_transfer
 from .transport.mqtt_transfer import MQTTPublisher
 import os
@@ -37,6 +37,7 @@ class EdgeMonitor:
                 ram = get_ram_usage()
                 disk = get_disk_usage()
                 gpu = get_gpu_usage()
+                temperature_celsius = get_temperature()
 
                 data = {
                     "timestamp": current_timestamp(),
@@ -47,7 +48,8 @@ class EdgeMonitor:
                     "disk": {"total_gb": bytes_to_gb(disk["total"]),
                             "used_gb": bytes_to_gb(disk["used"]),
                             "percent": disk["percent"]},
-                    "gpu": gpu
+                    "gpu": gpu,
+                    "temperature_celsius": temperature_celsius
                 }
 
                 if self.transport == "file":

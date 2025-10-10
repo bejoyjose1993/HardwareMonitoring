@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Edge Device Metrics</h1>
+
+  <div *ngIf="metrics; else loading">
+    <p><strong>Timestamp:</strong> {{ metrics.timestamp }}</p>
+    <p><strong>CPU:</strong> {{ metrics.cpu_percent }}%</p>
+    <p><strong>RAM:</strong> {{ metrics.ram.used_mb }} / {{ metrics.ram.total_mb }} MB ({{ metrics.ram.percent }}%)</p>
+    <p><strong>Disk:</strong> {{ metrics.disk.used_gb }} / {{ metrics.disk.total_gb }} GB ({{ metrics.disk.percent }}%)</p>
+    <p><strong>GPU:</strong> {{ metrics.gpu || 'N/A' }}</p>
+    <p><strong>CPU Temperature:</strong> {{ metrics.temperature_celsius || 'N/A' }}</p>
+  </div>
+
+  <ng-template #loading>
+    <p>Loading metrics...</p>
+  </ng-template>
+</div>

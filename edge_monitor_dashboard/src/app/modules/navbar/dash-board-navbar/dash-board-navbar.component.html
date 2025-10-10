@@ -1,0 +1,25 @@
+<div *ngIf="!isCustomerLoggedIn">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="EdgeMonitor.png"  class="logo-img" alt="EdgeMonitor" >
+    </div>
+    <!-- Buttons -->
+    <div class="nav-buttons">
+      <button routerLink="/login" class="btn-dark">Log in</button>
+      <button routerLink="/register" class="btn-light">Sign up</button>
+    </div>
+  </nav>
+
+</div>
+<div *ngIf="isCustomerLoggedIn">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="EdgeMonitor.png"  class="logo-img" alt="NeoNestify" >
+    </div>
+
+    <!-- Buttons -->
+    <div class="nav-buttons">
+      <button class="btn-dark" (click)="logout()" >Logout</button>
+    </div>
+  </nav>
+</div>

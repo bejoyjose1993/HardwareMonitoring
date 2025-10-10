@@ -1,0 +1,30 @@
+package com.edgemonitor.edgemonitor_backend.dto;
+
+public class AuthenticationResponse {
+
+	private String jwt;
+	private Long userId;
+	
+	public AuthenticationResponse() {}
+	public AuthenticationResponse(String jwt, Long userId) {
+		super();
+		this.jwt = jwt;
+		this.userId = userId;
+	}
+	
+	public String getJwt() {
+		return jwt;
+	}
+	
+	public void setJwt(String jwt) {
+		this.jwt = jwt;
+	}
+	
+	public Long getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+}

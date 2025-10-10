@@ -1,0 +1,78 @@
+<div class="monitor-container">
+  <div class="notification-bar" *ngIf="showRamNotification">
+  ⚠️   RAM usage high ({{ metrics?.ram?.percent || 'N/A' }}%)
+    <button class="close-btn" (click)="closeRamNotification()">×</button>
+  </div>
+  <!-- HEADER -->
+  <h2 class="monitor-header">SYSTEM STATS</h2>
+
+    <div class="main-card-rect">
+        <!-- Circular SYSTEM STATUS card on top -->
+        <div class="circle-card neon-glow main-card" *ngIf="metrics; else loading">
+            <div class="circle-border"></div>
+            <div class="inner-circle grid">
+            <div><strong>CPU</strong><br>{{ metrics.cpu_percent }}%</div>
+            <div><strong>RAM</strong><br>{{ metrics.ram.percent }}%</div>
+            <div><strong>DISK</strong><br>{{ metrics.disk.percent }}%</div>
+            <div><strong>GPU</strong><br>{{ metrics.gpu || 'N/A' }}</div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Other Cards Row -->
+  <div class="card-row" *ngIf="metrics; else loading">
+    <!-- CPU USAGE -->
+    <div class="circle-card yellow-glow">
+        <div class="circle-border"></div>
+        <div class="inner-circle">
+        <div class="label">CPU USAGE</div>
+        <div class="temp">{{ metrics.cpu_percent }}%</div>
+        </div>
+    </div>
+
+    <!-- DISK USAGE -->
+    <div class="circle-card blue-glow">
+        <div class="circle-border"></div>
+        <div class="inner-circle">
+        <div class="temp">{{ metrics.disk.percent }}%</div>
+        <div class="label">DISK</div>
+        <div class="usage">{{ metrics.disk.used_gb || 'N/A' }} GB</div>
+        </div>
+    </div>
+
+    <!-- RAM USAGE -->
+    <div class="circle-card orange-glow">
+        <div class="circle-border"></div>
+        <div class="inner-circle">
+        <div class="label">RAM USAGE</div>
+        <div class="temp">{{ metrics.ram.percent }}%</div>
+        <div class="label small">{{ metrics.ram.used_mb || 'N/A' }} MB</div>
+        </div>
+    </div>
+
+    <!-- GPU / USAGE -->
+    <div class="circle-card green-glow">
+        <div class="circle-border"></div>
+        <div class="inner-circle">
+        <div class="temp">{{ metrics.gpu || 'N/A' }}</div>
+        <div class="label">GPU</div>
+        </div>
+    </div>
+
+    <!-- TEMP -->
+    <div class="circle-card green-glow">
+        <div class="circle-border"></div>
+        <div class="inner-circle">
+        <div class="temp">{{ metrics.temperature_celsius || 'N/A' }}</div>
+        <div class="label">TEMP</div>
+        </div>
+    </div>
+
+    </div>
+
+  <ng-template #loading>
+    <p>Loading metrics...</p>
+  </ng-template>
+
+
+</div>

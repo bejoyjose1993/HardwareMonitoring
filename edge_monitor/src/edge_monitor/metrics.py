@@ -21,3 +21,19 @@ def get_gpu_usage():
         return None
     gpu_info = nvsmi.DeviceQuery("memory.used, utilization.gpu")
     return gpu_info
+
+
+def get_temperature():
+    try:
+        temps = psutil.sensors_temperatures()
+        if not temps:
+            return None
+        
+        # On many systems, 'coretemp' or 'cpu-thermal' is used
+        for name, entries in temps.items():
+            for entry in entries:
+                if entry.current:
+                    return round(entry.current, 1)
+    except Exception as e:
+        print(f"Temperature read error: {e}")
+        return None

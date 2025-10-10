@@ -1,0 +1,48 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: edgemonitor-gateway
+  redis:
+    host: ${REDIS_HOST}
+    port: 6379
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: ${GATEWAY_SERVICE_URI}
+          predicates:
+            - Path=/api/auth/login
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.requestedTokens: 2
+
+        - id: user-hello
+          uri: ${GATEWAY_SERVICE_URI}
+          predicates:
+            - Path=/api/auth/hello
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 60
+                redis-rate-limiter.requestedTokens: 60
+
+        - id: user-signup
+          uri: ${GATEWAY_SERVICE_URI}
+          predicates:
+            - Path=/api/auth/signup
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.requestedTokens: 2
+
+app:
+  cors:
+    allowed-origins: "*"
