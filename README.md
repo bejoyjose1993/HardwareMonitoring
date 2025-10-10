@@ -129,7 +129,7 @@ Redis: port 6379
 
 ### 1. Login Page
 
-![Project Logo](User Interface Images/EdgeMonitorLogo.png)
+![Project Logo](User Interface Images/Edge-Monitor LogIn Page.png)
 
 ### 2. SignIn Page
 
