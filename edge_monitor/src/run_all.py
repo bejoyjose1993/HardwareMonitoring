@@ -1,5 +1,6 @@
 # run_all.py
 import asyncio
+import os
 from edge_monitor.edge_monitor import EdgeMonitor
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,11 +29,20 @@ async def get_metrics():
     return metrics_store
 
 async def run_edge_monitor(shutdown_event: asyncio.Event):
-    monitor = EdgeMonitor(transport="http", endpoint="http://localhost:8000/ingest", interval=5)
+    # 🔹 Read from environment variables (with defaults)
+    transport = os.getenv("TRANSPORT", "http")
+    endpoint = os.getenv("ENDPOINT", "http://localhost:8000/ingest")
+    interval = int(os.getenv("INTERVAL", "5"))
+
+    print(f"[CONFIG] Transport={transport}, Endpoint={endpoint}, Interval={interval}s")
+
+    monitor = EdgeMonitor(transport=transport, endpoint=endpoint, interval=interval)
     await monitor.run(shutdown_event)
 
 async def run_server(shutdown_event: asyncio.Event):
-    config = uvicorn.Config(app, host="0.0.0.0", port=8000, log_level="info")
+    port = int(os.getenv("SERVER_PORT", "8000"))
+    
+    config = uvicorn.Config(app, host="0.0.0.0", port=port, log_level="info")
     server = uvicorn.Server(config)
     server_task = asyncio.create_task(server.serve())
 

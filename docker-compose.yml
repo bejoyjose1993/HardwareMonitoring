@@ -35,6 +35,7 @@ services:
       # - TZ=Europe/Stockholm
     depends_on:
       - edgemonitor_gateway
+      - edge_monitor
 
   edgemonitor_gateway:
     environment:

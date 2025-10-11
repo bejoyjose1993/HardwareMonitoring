@@ -2,13 +2,14 @@
 FROM node:22-alpine AS build
 
 ARG BASE_API_URL
+ARG FAST_BASE_API_URL
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 
 # Inject BASE_API_URL into environment file (optional approach below)
-RUN echo "export const environment = { production: true, apiUrl: '${BASE_API_URL}', fpApiUrl: '${FP_BASE_API_URL}'};" > src/environments/environment.prod.ts
+RUN echo "export const environment = { production: true, apiUrl: '${BASE_API_URL}', fpApiUrl: '${FAST_BASE_API_URL}'};" > src/environments/environment.prod.ts
 RUN npx ng build --configuration production --no-progress
 
 # Serve with Nginx

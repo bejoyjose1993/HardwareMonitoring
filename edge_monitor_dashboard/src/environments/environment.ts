@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: 'http://localhost:8082',
-  fpApiUrl: 'http://localhost:5000/' // gets overwritten during build
+  fpApiUrl: 'http://localhost:8000' // gets overwritten during build
 };
