@@ -1,0 +1,18 @@
+# Ignore everything
+*
+
+# Keep important Docker files
+!docker-compose.yml
+!docker-compose.override.yml
+!docker-compose.prod.yml
+
+# Keep MySQL folder and its contents
+!mysql/
+
+# Keep gitignore itself
+!.gitignore
+
+# Optional: keep readme or docs if you have them
+!README.md
+!README.txt
+!docs/
