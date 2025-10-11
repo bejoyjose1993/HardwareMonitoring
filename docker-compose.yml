@@ -27,8 +27,9 @@ services:
       - SPRING_REDIS_HOST=redis
     depends_on:
       - redis
-      - mysql
       - kafka
+      - mysql:
+        condition: service_healthy
 
   edgemonitor_dashboard:
     # environment:
