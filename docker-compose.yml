@@ -26,9 +26,11 @@ services:
       - TZ=Europe/Stockholm
       - SPRING_REDIS_HOST=redis
     depends_on:
-      - redis
-      - kafka
-      - mysql:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
 
   edgemonitor_dashboard:
