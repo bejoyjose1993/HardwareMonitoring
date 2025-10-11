@@ -51,6 +51,7 @@ services:
       context: ./edge_monitor_dashboard
       args:
         - BASE_API_URL=${BASE_API_URL}
+        - FAST_BASE_API_URL=${FAST_BASE_API_URL}
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     environment:
@@ -87,3 +88,4 @@ services:
       - TRANSPORT=${EDGE_MONITOR_TRANSPORT}
       - ENDPOINT=${EDGE_MONITOR_ENDPOINT}
       - INTERVAL=${EDGE_MONITOR_INTERVAL}
+      - SERVER_PORT=${EDGE_MONITOR_PORT}
