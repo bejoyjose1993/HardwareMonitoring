@@ -10,6 +10,9 @@ COPY . .
 
 # Inject BASE_API_URL into environment file (optional approach below)
 RUN echo "export const environment = { production: true, apiUrl: '${BASE_API_URL}', fpApiUrl: '${FAST_BASE_API_URL}'};" > src/environments/environment.prod.ts
+
+RUN echo "FAST_BASE_API_URL=${FAST_BASE_API_URL}" && echo "BASE_API_URL=${BASE_API_URL}"
+
 RUN npx ng build --configuration production --no-progress
 
 # Serve with Nginx
