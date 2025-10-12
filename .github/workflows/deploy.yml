@@ -56,7 +56,7 @@ jobs:
         username: ec2-user
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          docker pull bejoyjose/edgemonitor-backend:latest
+          docker pull bejoyjose/edgemonitor_backend:latest
           docker pull bejoyjose/edgemonitor_gateway:latest
           docker pull bejoyjose/edgemonitor_notification:latest
           docker pull bejoyjose/edgemonitor_dashboard:latest
