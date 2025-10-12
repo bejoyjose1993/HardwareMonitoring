@@ -23,17 +23,17 @@ jobs:
         
     - name: Build and push edgemonitor-backend image
       run: |
-        docker build -t bejoyjose/edgemonitor-backend ./edgemonitor-backend
-        docker push bejoyjose/edgemonitor-backend:latest
+        docker build -t bejoyjose/edgemonitor_backend ./edgemonitor-backend
+        docker push bejoyjose/edgemonitor_backend:latest
 
     - name: Build and push edgemonitor_gateway image
       run: |
-        docker build -t bejoyjose/edgemonitor_gateway ./edgemonitor_gateway
+        docker build -t bejoyjose/edgemonitor_gateway ./edgemonitor-gateway
         docker push bejoyjose/edgemonitor_gateway:latest
 
     - name: Build and push edgemonitor_notification service image
       run: |
-        docker build -t bejoyjose/edgemonitor_notification ./edgemonitor_notification
+        docker build -t bejoyjose/edgemonitor_notification ./edgemonitor-notification
         docker push bejoyjose/edgemonitor_notification:latest
 
     - name: Build and push edge_monitor service image
@@ -41,13 +41,13 @@ jobs:
         docker build -t bejoyjose/edge_monitor ./edge_monitor
         docker push bejoyjose/edge_monitor:latest
 
-    - name: Build and push frontend image
+    - name: Build and push edge_monitor_dashboard image
       run: |
         docker build \
           --build-arg BASE_API_URL=${{ secrets.BASE_API_URL }} \
           --build-arg FAST_BASE_API_URL=${{ secrets.FAST_BASE_API_URL }} \
-          -t bejoyjose/edgemonitor_dashboard ./edgemonitor_dashboard
-        docker push bejoyjose/edgemonitor_dashboard:latest
+          -t bejoyjose/edge_monitor_dashboard ./edge_monitor_dashboard
+        docker push bejoyjose/edge_monitor_dashboard:latest
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
