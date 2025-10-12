@@ -139,3 +139,8 @@ Redis: port 6379
 
 ![Dashboard Page](User%20Interface%20Images/Edge-Monitor%20Dashboard%20Page.png)
 
+
+## Loom Video Link
+
+https://www.loom.com/share/29842c0f5d9748e68b42c76efc74262e?sid=46512cf1-5cd0-49e8-98bb-5d59938567ae
+
