@@ -2,6 +2,7 @@
 
 This repository contains a **Dockerized Full-Stack Application** with the following tech stack:
 
+- **Edge Monitor Backend**: Python  
 - **Frontend**: Angular  
 - **Backend**: Spring Boot  
 - **API Gateway**: Spring Cloud Gateway
@@ -31,7 +32,8 @@ Each component is containerized using Docker and orchestrated via Docker Compose
 | Layer                  | Technology                                             |
 |------------------------|--------------------------------------------------------|
 | Frontend               | Angular                                                |
-| Backend                | Spring Boot                                            |
+| Edge Monitor Backend   | Python                                                 |
+| Auth Backend           | Spring Boot                                            |
 | API Gateway            | Spring Cloud Gateway                                   |
 | Mailing Micro-Service  | Spring Boot                                            |
 | Database               | MySQL                                                  |
@@ -265,7 +267,7 @@ jobs:
 | `FAST_API_URL`    | http://xx.xx.xxx.xx:8000                  |
 
 ###  ✅ How to Deploy
-ust push code to the main branch — that’s it!
+Just push code to the main branch — that’s it!
 git add .
 git commit -m "Your changes"
 git push origin main
