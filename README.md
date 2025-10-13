@@ -19,7 +19,7 @@ This repository contains a **Dockerized Full-Stack Application** with the follow
 [ Angular App ] --> [ Spring Cloud Gateway ] --> [ Spring Boot Services ]
 | [ MySQL | Redis ]
 
-![Dashboard Page](User%20Interface%20Images/System%20Architecture%20(2).png)
+![Sysstem Architecture](Design%20Documents/System%20Architecture%20(2).png)
 
 
 Each component is containerized using Docker and orchestrated via Docker Compose for local development and deployment on an AWS EC2 instance.
