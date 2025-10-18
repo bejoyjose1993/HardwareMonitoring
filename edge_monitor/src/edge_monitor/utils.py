@@ -5,16 +5,16 @@ import json
 from pathlib import Path 
 import threading
 
-# Shutdown flag
+# Shutdown flag (Initilly used now handled in run_all.py)
 shutdown_event = threading.Event()
 
-# Handler for Ctrl+C / Termination
+# Handler for Ctrl+C / Termination (Initilly used now handled in run_all.py)
 def handle_exit(sig=None, frame=None):
     if not shutdown_event.is_set():
         print("Exiting...")
         shutdown_event.set() 
 
-
+#(Initilly used now handled in run_all.py)
 def register_signal_handlers():
     try:
         # Register signals normally (Unix)

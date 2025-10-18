@@ -1,5 +1,5 @@
 <div class="monitor-container">
-  <div class="notification-bar" *ngIf="showRamNotification">
+  <div class="notification-bar" *ngIf="(metrics?.ram?.percent || 0) > 90 && showRamNotification">
   ⚠️   RAM usage high ({{ metrics?.ram?.percent || 'N/A' }}%)
     <button class="close-btn" (click)="closeRamNotification()">×</button>
   </div>
