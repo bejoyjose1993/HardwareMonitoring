@@ -27,27 +27,7 @@ Each component is containerized using Docker and orchestrated via Docker Compose
 
 ---
 
-
-## 🧱 Edge Monitor Architecture
-
-┌────────────────────────────────────────────┐
-│                 run_all.py                  │
-│ ┌───────────────────────┐   ┌─────────────┐│
-│ │      EdgeMonitor       │   │   FastAPI   ││
-│ │ - Collects metrics     │   │ - Receives  ││
-│ │   every 5s             │──>│   /ingest  ││
-│ │ - Sends via HTTP POST  │   │ - Serves   ││
-│ │                        │   │   /metrics ││
-│ └───────────────────────┘   └─────────────┘│
-│                  ^                             │
-│                  │                             │
-│         asyncio event loop                     │
-│       (runs both concurrently)                │
-└────────────────────────────────────────────┘
-
----
-
-### ✅ Workflow
+## ✅ Workflow
 
 1. **EdgeMonitor** collects CPU, RAM, Disk, GPU, and temperature metrics every few seconds.  
 2. Sends metrics via **HTTP POST** to the FastAPI `/ingest` endpoint.  
