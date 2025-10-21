@@ -19,6 +19,7 @@ This repository contains a **Dockerized Full-Stack Application** with the follow
 
 [ Angular App ] --> [ Spring Cloud Gateway ] --> [ Spring Boot Services ]
 | [ MySQL | Redis ]
+[ Angular App ] --> [ Python Backend ] 
 
 ![Sysstem Architecture](Design%20Documents/System%20Architecture%20(2).png)
 
