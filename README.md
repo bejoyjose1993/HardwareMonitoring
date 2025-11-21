@@ -305,4 +305,3 @@ You can test backend APIs via(If rules are set correctly):
 curl http://<ec2-public-ip>:8082/api/auth/hello
 ```
 Use tools like Postman for more complex testing.
-
